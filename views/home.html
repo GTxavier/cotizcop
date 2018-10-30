@@ -1,0 +1,182 @@
+<section class="ui-view">
+	<div class="container">
+		<div ng-controller="homeCtrl">
+	  	<form name="myForm">
+	    	<label for="repeatSelect"> Seleccione el tipo de cotizacion que desea realizar: </label>
+	    	<br>
+	    	<select class="form-control" name="repeatSelect" id="repeatSelect" ng-model="data.model">
+	      		<option ng-repeat="option in data.availableOptions" value="{{option.id}}">{{option.name}}</option>
+	    	</select>
+		</form>
+		<hr>
+		<div ng-if="data.model == 1">
+			<h1>CREDITO</h1>
+
+			<div class="form-row">
+	  			<div class="form-group col-md-6">
+	    			<label class="control-label">Nombre</label>
+	    			<input ng-model="NewCredito.nombre" maxlength="100" type="text" required="required" class="form-control" placeholder="Ingrese su Nombre"  />
+	  			</div>
+	          	<div class="form-group col-md-6">
+	            	<label class="control-label">Apellido</label>
+	            	<input ng-model="NewCredito.apellido" maxlength="100" type="text" required="required" class="form-control" placeholder="Ingrese su Apellido" />
+	          	</div>
+			</div>
+			<div class="form-row">  
+	    		<div class="form-group col-md-6">
+					<label class="control-label">Correo Electronico</label>
+		    		<input ng-model="NewCredito.email"type="email" class="form-control" id="email" placeholder="minombre@ejemplo.com" required>
+				</div>
+				<div class="form-group col-md-6">
+		            <label class="control-label">Teléfono</label>
+		            <input ng-model="NewCredito.telefono" maxlength="8" type="tel" required="required" class="form-control" placeholder="Ingrese su Numero Teléfonico"  />
+		        </div>
+			</div> 
+			<div class="form-row">   
+				<div class="col-md-12">
+		  			<div class="form-group">
+		    			<label class="control-label">Destino del crédito</label>
+					    <select ng-model="NewCredito.destino" class="form-control" id="control_select_destino" name="destino" required>
+					      	<option value="">Seleccione el destino del crédito</option>
+					      	<option value="comercio">Comercio</option>
+					      	<option value="industria">Industria</option>
+					      	<option value="servicios">Servicios</option>
+					      	<option value="consumo">Consumo</option>
+					      	<option value="Vivienda">Vivienda</option>
+					      	<option value="agropecuario">Agropecuario</option>
+					    </select>
+					</div>
+				  	<div class="form-group">
+				    	<label class="control-label">Garantía de crédito</label>
+					    <select ng-model="NewCredito.garantia" class="form-control" id="control_select_garantia" required>
+					      	<option value="">Seleccione la garantía del crédito</option>
+					      	<option value="comercio">Hipoetecario</option>
+					      	<option value="industria">Fiduciario</option>
+					      	<option value="servicios">Sector Publico con partida Presupuestaria</option>
+					      	<option value="consumo">Credito Automatico</option>
+					    </select>
+				  	</div>
+				</div>	
+			</div>  
+			<div class="form-row">								  
+	       		<div class="form-group col-md-6">
+	        		<label class="control-label">Plazo</label>(Meses)
+	        		<input ng-model="NewCredito.plazo" type="number" required="required" class="form-control" placeholder="12" onKeyPress="if(this.value.length==2) return false;" min="1"  />
+	      		</div>
+	       		<div class="form-group col-md-6">
+	        		<label class="control-label">Monto</label>(Q)
+	        		<input ng-model="NewCredito.Monto" type="number" required="required" class="form-control" placeholder="1000" onKeyPress="if(this.value.length==10) return false;" min="4" />
+	      		</div>
+	      	</div>
+	      	<button type="button" class="btn btn-success" ng-click="preview()">Vista Previa</button>
+		</div>
+	  	<div ng-if="data.model == 2">
+	  		<h1>AHORRO PROGRAMADO</h1>
+  			<div class="form-row">
+      			<div class="form-group col-md-6">
+        			<label class="control-label">Nombre</label>
+        			<input  maxlength="100" type="text" required="required" class="form-control" placeholder="Ingrese su Nombre"  />
+      			</div>
+	          	<div class="form-group col-md-6">
+	            	<label class="control-label">Apellido</label>
+	            	<input maxlength="100" type="text" required="required" class="form-control" placeholder="Ingrese su Apellido" />
+	          	</div>
+  			</div>
+  			<div class="form-row">  
+        		<div class="form-group col-md-6">
+					<label class="control-label">Correo Electronico</label>
+		    		<input type="email" class="form-control" id="email" placeholder="minombre@ejemplo.com" required>
+				</div>
+				<div class="form-group col-md-6">
+		            <label class="control-label">Teléfono</label>
+		            <input  maxlength="8" type="tel" required="required" class="form-control" placeholder="Ingrese su Numero Teléfonico"  />
+		        </div>
+    		</div> 
+    		<div class="form-row">   
+	  			<div class="form-group col-md-6">
+	    			<label class="control-label">Rango de Cuotas Para Aperturar</label>
+				    <select class="form-control" id="control_select_destino" name="destino" required>
+				      	<option value="">Seleccione la cuota de apertura</option>
+				      	<option value="25">Q 25.00</option>
+				      	<option value="50">Q 50.00</option>
+				      	<option value="75">Q 75.00</option>
+				      	<option value="100">Q 100.00</option>
+				      	<option value="150">Q 150.00</option>
+				      	<option value="200">Q 200.00</option>
+				      	<option value="250">Q 250.00</option>
+				      	<option value="300">Q 300.00</option>
+				      	<option value="400">Q 400.00</option>
+				      	<option value="500">Q 500.00</option>
+				    </select>
+				</div>
+			  	<div class="form-group col-md-6">
+			    	<label class="control-label">Rango de Plazo Para Aperturar </label>
+				    <select class="form-control" id="control_select_garantia" required>
+				      	<option value="">Seleccione el plazo de apertura</option>
+				      	<option value="1">1 Año</option>
+				      	<option value="2">2 Años</option>
+				      	<option value="3">3 Años</option>
+				      	<option value="5">5 Años</option>
+				      	<option value="7">7 Años</option>
+				      	<option value="10">10 Años</option>
+				      	<option value="12">12 Años</option>
+				      	<option value="15">15 Años</option>
+				    </select>
+			  	</div>
+			  	<button type="button" class="btn btn-success">Vista Previa</button>	
+			</div>	
+	  	</div>
+	  	<div ng-if="data.model == 3">
+	        <h1>AHORRO A PLAZO FIJO</h1>
+  			<div class="form-row">
+      			<div class="form-group col-md-6">
+        			<label class="control-label">Nombre</label>
+        			<input  maxlength="100" type="text" required="required" class="form-control" placeholder="Ingrese su Nombre"  />
+      			</div>
+	          	<div class="form-group col-md-6">
+	            	<label class="control-label">Apellido</label>
+	            	<input maxlength="100" type="text" required="required" class="form-control" placeholder="Ingrese su Apellido" />
+	          	</div>
+  			</div>
+  			<div class="form-row">  
+        		<div class="form-group col-md-6">
+					<label class="control-label">Correo Electronico</label>
+		    		<input type="email" class="form-control" id="email" placeholder="minombre@ejemplo.com" required>
+				</div>
+				<div class="form-group col-md-6">
+		            <label class="control-label">Teléfono</label>
+		            <input  maxlength="8" type="tel" required="required" class="form-control" placeholder="Ingrese su Numero Teléfonico"  />
+		        </div>
+    		</div> 
+    		<div class="form-row">   
+	  			<div class="form-group col-md-6">
+	    			<label class="control-label">Tipo de Moneda</label>
+				    <select class="form-control" id="moneda" name="moneda" required>
+				      	<option value="">Seleccione Tipo de Moneda</option>
+				      	<option value="quetzales">Quetzales</option>
+				      	<option value="dolares">Dolares</option>
+				    </select>
+				</div>
+			  	<div class="form-group col-md-6">
+			    	<label class="control-label">Plazo(mesess)</label>
+				    <select class="form-control" id="plazo_a_fijo" required>
+				      	<option value="">Seleccione el plazo</option>
+				      	<option value="90">90 Dias</option>
+				      	<option value="180">180 Dias</option>
+				      	<option value="365">365 Dias</option>
+				      	<option value="540">540 Dias</option>
+				      	<option value="730">730 Dias</option>  	
+				    </select>
+			  	</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-12">
+					<label class="control-label">Monto</label>
+        			<input type="number" required="required" class="form-control" placeholder="1000" onKeyPress="if(this.value.length==10) return false;" min="4"  />
+				</div>
+			</div>
+			<button type="button" class="btn btn-success" ng-click="preview()">Vista Previa</button>	
+	  	</div>
+		</div>
+	</div>	
+</section>
